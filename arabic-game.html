@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabic Alphabet Game | Fun Learning!</title>
+    <link rel="stylesheet" href="arabic-game.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Playful Background elements -->
+    <div class="cloud cloud-1">☁️</div>
+    <div class="cloud cloud-2">☁️</div>
+    <div class="cloud cloud-3">☁️</div>
+    <div class="sun">☀️</div>
+
+    <div class="container">
+        <!-- START SCREEN -->
+        <div id="start-screen" class="fun-panel">
+            <h1 class="bounce-text">Arabic Alphabet Match</h1>
+            <p class="subtitle">Welcome kids! Let's play and learn the Arabic alphabet order! 🎈</p>
+            
+            <div class="input-group">
+                <input type="text" id="player-name" placeholder="What is your name?" autocomplete="off">
+            </div>
+            
+            <div class="input-group">
+                <label for="level-select">Choose your Level:</label>
+                <select id="level-select" class="level-dropdown">
+                    <option value="1">Level 1 (Letters 1 to 7)</option>
+                    <option value="2">Level 2 (Letters 8 to 14)</option>
+                    <option value="upto2">Level Up to 2 (Mix of 1 to 14)</option>
+                    <option value="3">Level 3 (Letters 15 to 21)</option>
+                    <option value="upto3">Level Up to 3 (Mix of 1 to 21)</option>
+                    <option value="4">Level 4 (Letters 22 to 28)</option>
+                    <option value="upto4">Level Up to 4 (Mix of 1 to 28)</option>
+                    <option value="5">Level 5 (Ultimate Mix! 10 Letters)</option>
+                </select>
+            </div>
+
+            <button id="start-btn" class="btn btn-bounce">🚀 Start Game 🚀</button>
+
+            <div id="past-scores-container" class="past-scores hidden">
+                <h3>🏆 Top 3 Scores 🏆</h3>
+                <div id="past-scores-list">
+                    <!-- Scores will be injected here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- GAME SCREEN -->
+        <div id="game-screen" class="fun-panel hidden">
+            <div class="game-header">
+                <div class="stat-box box-blue">
+                    <span class="stat-label">Player</span>
+                    <span id="display-name" class="stat-value">---</span>
+                </div>
+                <div class="stat-box box-purple">
+                    <span class="stat-label">Level</span>
+                    <span id="display-level" class="stat-value">1</span>
+                </div>
+                <div class="stat-box box-orange">
+                    <span class="stat-label">Time</span>
+                    <span id="display-time" class="stat-value timer">0s</span>
+                </div>
+                <div class="stat-box box-green">
+                    <span class="stat-label">Score</span>
+                    <span id="display-score" class="stat-value">0</span>
+                </div>
+                <div class="stat-box box-error" style="border-color: var(--error); background: #FFE4E6;">
+                    <span class="stat-label">Wrong</span>
+                    <span id="display-wrong" class="stat-value" style="color: var(--error);">0</span>
+                </div>
+            </div>
+
+            <!-- New End Game Button Visible during Game -->
+            <div class="action-bar">
+                <button id="end-early-btn" class="btn btn-danger">🛑 End Game</button>
+            </div>
+
+            <div class="game-area">
+                <div class="column numbers-col">
+                    <h3 class="col-title">Numbers (أرقام)</h3>
+                    <div id="numbers-container" class="column-items spaced-items"></div>
+                </div>
+                <div class="column letters-col">
+                    <h3 class="col-title">Letters (حروف)</h3>
+                    <div id="letters-container" class="column-items spaced-items"></div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- END SCREEN -->
+        <div id="end-screen" class="fun-panel hidden">
+            <h1 class="bounce-text">Masha'Allah! 🎉</h1>
+            <p class="subtitle" style="font-size: 1.5rem;">You finished the game! 🎈</p>
+            
+            <div class="game-header final-stats">
+                <div class="stat-box box-green">
+                    <span class="stat-label">Final Score</span>
+                    <span id="final-score" class="stat-value">0</span>
+                </div>
+                <div class="stat-box box-orange">
+                    <span class="stat-label">Time Taken</span>
+                    <span id="final-time" class="stat-value timer">0s</span>
+                </div>
+            </div>
+
+            <div class="end-actions">
+                <button id="play-again-btn" class="btn btn-bounce">🎮 Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Effects -->
+    <audio id="sound-correct" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3" preload="auto"></audio>
+    <audio id="sound-wrong" src="https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3" preload="auto"></audio>
+    <audio id="sound-win" src="https://assets.mixkit.co/active_storage/sfx/2008/2008-preview.mp3" preload="auto"></audio>
+
+    <script src="arabic-game.js"></script>
+</body>
+</html>
