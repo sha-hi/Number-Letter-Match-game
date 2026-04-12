@@ -184,6 +184,10 @@ input[type="text"]:focus {
     padding: 12px 30px;
 }
 
+.btn-share {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+}
+
 .btn-danger {
     background: var(--error);
     font-size: 1.1rem;
@@ -421,8 +425,8 @@ input[type="text"]:focus {
         padding: 10px;
     }
     .stat-box {
-        flex: 1 1 calc(33% - 10px);
-        min-width: 70px;
+        flex: 1 1 calc(50% - 10px);
+        min-width: 100px;
         padding: 5px;
     }
     .stat-label {

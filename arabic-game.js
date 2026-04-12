@@ -38,6 +38,7 @@ const playerNameInput = document.getElementById('player-name');
 const levelSelect = document.getElementById('level-select');
 const pastScoresContainer = document.getElementById('past-scores-container');
 const pastScoresList = document.getElementById('past-scores-list');
+const shareBtn = document.getElementById('share-btn');
 
 const dispName = document.getElementById('display-name');
 const dispLevel = document.getElementById('display-level');
@@ -65,6 +66,9 @@ playAgainBtn.addEventListener('click', () => {
     playerNameInput.value = '';
     loadPastScores();
 });
+
+shareBtn.addEventListener('click', shareScore);
+
 endEarlyBtn.addEventListener('click', () => {
     endGame();
 });
@@ -287,9 +291,39 @@ function endGame() {
     
     saveScore();
     
+    document.getElementById('final-name').textContent = playerName || 'Kid';
+    document.getElementById('final-level').textContent = getLevelDisplayName(currentLevelVal);
     document.getElementById('final-score').textContent = score;
     document.getElementById('final-time').textContent = timeSeconds + 's';
 
     gameScreen.classList.add('hidden');
     endScreen.classList.remove('hidden');
+}
+
+function shareScore() {
+    const scoreVal = score;
+    const levelName = getLevelDisplayName(currentLevelVal);
+    const shareText = `Masha'Allah! 🎉 I just scored ${scoreVal} points on Level ${levelName} in the Arabic Alphabet Match game! 🎈 Can you beat my score? 🚀`;
+    
+    // Check if Web Share API is available (works great on Mobile)
+    if (navigator.share) {
+        navigator.share({
+            title: 'Arabic Alphabet Match',
+            text: shareText,
+            url: window.location.href
+        }).catch(err => {
+            console.log('Error sharing:', err);
+            // Fallback to WhatsApp Direct link if share fails
+            openWhatsApp(shareText);
+        });
+    } else {
+        // Fallback to WhatsApp Direct for Desktop/Browsers without Share API
+        openWhatsApp(shareText);
+    }
+}
+
+function openWhatsApp(text) {
+    const encodedText = encodeURIComponent(text);
+    const whatsappUrl = `https://wa.me/?text=${encodedText}`;
+    window.open(whatsappUrl, '_blank');
 }
